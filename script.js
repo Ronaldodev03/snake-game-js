@@ -1,6 +1,7 @@
 // HTML Elements
 const board = document.getElementById("board");
 const scoreBoard = document.getElementById("scoreBoard");
+const scoreBoardBest = document.getElementById("scoreBoard__best");
 const startButton = document.getElementById("start");
 const gameOverSign = document.getElementById("gameOver");
 
@@ -86,6 +87,13 @@ const gameOver = () => {
   gameOverSign.style.display = "block";
   clearInterval(moveInterval);
   startButton.disabled = false;
+
+  // Verifica y actualiza el mejor puntaje
+  const bestScore = localStorage.getItem("bestScore") || 0;
+  if (score > bestScore) {
+    localStorage.setItem("bestScore", score);
+    scoreBoardBest.innerText = `Best Score: ${score}`; // Actualiza el mejor puntaje en la UI
+  }
 };
 
 const setDirection = (newDirection) => {
@@ -118,9 +126,6 @@ const createEmptyBoard = () => {
   emptySquares = [];
   createBoard(); // Crea el tablero con las casillas vacías
 };
-
-// Llamar a la función para crear un tablero vacío al cargar la página
-document.addEventListener("DOMContentLoaded", createEmptyBoard);
 
 const createRandomFood = () => {
   const randomEmptySquare =
@@ -179,7 +184,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-/* mobile */
+/* ---------------mobile--------------- */
 
 if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
   document.body.classList.add("touch-enabled");
@@ -205,3 +210,19 @@ rightButton.addEventListener("touchstart", () => {
 });
 
 startTouchButton.addEventListener("touchstart", startGame);
+
+/*  ---------------mejor score con local storage--------------- */
+const initializeBestScore = () => {
+  const bestScore = localStorage.getItem("bestScore");
+  if (bestScore) {
+    scoreBoardBest.innerText = `Best Score: ${bestScore}`;
+  } else {
+    scoreBoardBest.innerText = `Best Score: 0`;
+  }
+};
+
+// Llama a la función al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  createEmptyBoard(); // Crea el tablero vacío
+  initializeBestScore(); // Muestra el mejor puntaje al cargar
+});
