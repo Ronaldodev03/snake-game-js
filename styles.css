@@ -36,9 +36,16 @@ body {
 }
 
 #start {
+  display: block;
   background-color: #f35a69;
   border: none;
   color: white;
+}
+
+@media (max-aspect-ratio: 10/9) {
+  #start {
+    display: none;
+  }
 }
 
 #scoreBoard {
@@ -74,7 +81,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
   }
 
   .horizontal-buttons {
@@ -84,17 +91,32 @@ body {
 
   .btn-control__start,
   .btn-control {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     cursor: pointer;
   }
 
   .btn-control {
+    font-size: 36px;
+  }
+
+  .btn-control__start {
+    background-color: #f35a69;
+    border: none;
+    color: white;
     font-size: 20px;
+  }
+
+  .btn-control__start:hover {
+    background-color: #d94a59;
   }
 }
 
 /* utility */
 .text-center {
   text-align: center;
+}
+
+.h-1 {
+  height: 16px;
 }
