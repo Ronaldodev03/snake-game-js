@@ -165,3 +165,30 @@ document.addEventListener("keydown", (e) => {
     startGame();
   }
 });
+
+/* mobile */
+
+if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+  document.body.classList.add("touch-enabled");
+}
+
+const upButton = document.getElementById("up");
+const downButton = document.getElementById("down");
+const leftButton = document.getElementById("left");
+const rightButton = document.getElementById("right");
+const startTouchButton = document.getElementById("startTouch");
+
+upButton.addEventListener("touchstart", () => {
+  directionEvent({ code: "ArrowUp" });
+});
+downButton.addEventListener("touchstart", () => {
+  directionEvent({ code: "ArrowDown" });
+});
+leftButton.addEventListener("touchstart", () => {
+  directionEvent({ code: "ArrowLeft" });
+});
+rightButton.addEventListener("touchstart", () => {
+  directionEvent({ code: "ArrowRight" });
+});
+
+startTouchButton.addEventListener("touchstart", startGame);

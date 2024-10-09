@@ -63,6 +63,37 @@ body {
   border: 1px solid #000;
 }
 
+/* btns mobile */
+
+#controls {
+  display: none;
+}
+
+@media (max-aspect-ratio: 10/9) {
+  #controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .horizontal-buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .btn-control__start,
+  .btn-control {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  .btn-control {
+    font-size: 20px;
+  }
+}
+
 /* utility */
 .text-center {
   text-align: center;
