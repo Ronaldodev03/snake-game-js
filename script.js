@@ -109,6 +109,19 @@ const directionEvent = (key) => {
   }
 };
 
+// Crea el tablero vacío (sin la serpiente y sin la comida)
+const createEmptyBoard = () => {
+  boardSquares = Array.from(Array(boardSize), () =>
+    new Array(boardSize).fill(squareTypes.emptySquare)
+  );
+  board.innerHTML = "";
+  emptySquares = [];
+  createBoard(); // Crea el tablero con las casillas vacías
+};
+
+// Llamar a la función para crear un tablero vacío al cargar la página
+document.addEventListener("DOMContentLoaded", createEmptyBoard);
+
 const createRandomFood = () => {
   const randomEmptySquare =
     emptySquares[Math.floor(Math.random() * emptySquares.length)];
